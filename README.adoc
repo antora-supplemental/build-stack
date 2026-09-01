@@ -86,13 +86,13 @@ Valentus and DevCentr hubs style the block with existing `.footer-related` rules
 |===
 | Handlebars (`site.keys.*`) | Set when
 
-| `buildStackAntoraHtml`
+| `build_stack_antora_html`
 | One or more `antora.extensions` entries after filtering
 
-| `buildStackAsciidocHtml`
+| `build_stack_asciidoc_html`
 | One or more `asciidoc.extensions` entries after filtering
 
-| `uiBundleName`, `uiBundleUrl`
+| `ui_bundle_name`, `ui_bundle_url`
 | `ui.bundle.url` matches a known bundle slug and keys were not set manually
 |===
 

@@ -1,5 +1,9 @@
 = Changelog
 
+== 0.1.1 (2026-09-01)
+
+* Docs + companion partial: use snake_case `site.keys` names (`build_stack_antora_html`, etc.) — Antora does not camelCase playbook keys for Handlebars.
+
 == 0.1.0 (2026-09-01)
 
 * Initial release: publish `antora.extensions` and `asciidoc.extensions` to `site.keys` as linked footer HTML.
