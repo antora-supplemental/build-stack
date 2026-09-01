@@ -1,0 +1,102 @@
+= build-stack
+:description: Antora extension that publishes playbook extension stacks to site.keys for footer attribution.
+:page-audience: Antora hub maintainers shipping Valentus or custom supplemental UI
+:page-usage-context: Register under antora.extensions; copy companion footer partial into supplemental-ui
+:page-doc-type: reference
+:page-orig-author: Ryan Johnson
+:page-last-author: Cursor agent on behalf of Ryan Johnson
+:page-last-edited: 2026-09-01
+
+Antora footers often credit the UI theme only. The real stack also lives in playbook YAML — `antora.extensions`, `asciidoc.extensions`, and `ui.bundle.url` — but Antora does **not** expose those lists to Handlebars. Only `site.keys` reaches UI templates.
+
+*build-stack* bridges that gap on `playbookBuilt`:
+
+* Publishes `site.keys.build_stack_antora_html` and `build_stack_asciidoc_html` (pre-linked HTML for footer use)
+* Derives `ui_bundle_name` / `ui_bundle_url` from `ui.bundle.url` when not set manually
+* Skips itself and relative `./lib/...` requires from the published stack
+
+== Install
+
+[source,bash]
+----
+pnpm add -D github:antora-supplemental/build-stack#main
+----
+
+== Playbook
+
+[source,yaml]
+----
+antora:
+  extensions:
+    - '@antora/lunr-extension'
+    - require: '@antora-supplemental/build-stack'
+----
+
+Optional config:
+
+[source,yaml]
+----
+antora:
+  extensions:
+    - require: '@antora-supplemental/build-stack'
+      package_home:
+        '@acme/custom-ext': https://example.test/custom-ext
+      ui_bundles:
+        my-theme: https://github.com/acme/my-theme
+      exclude:
+        - '@antora-supplemental/build-stack'
+        - '@acme/internal-only'
+----
+
+[cols="1,2"]
+|===
+| Key | Purpose
+
+| `package_home`
+| Map extension package IDs to link targets (merged with built-in known URLs)
+
+| `ui_bundles`
+| Map UI bundle slug substrings in `ui.bundle.url` to `{name}` home pages
+
+| `exclude`
+| Extra extension IDs to omit from footer stack (self excluded by default)
+|===
+
+== Companion footer partial (recommended)
+
+Copy the partial into hub `supplemental-ui`:
+
+[source,bash]
+----
+cp node_modules/@antora-supplemental/build-stack/ui/partials/footer-build-stack.hbs supplemental-ui/partials/
+----
+
+Include it from your `footer-content.hbs` override (before the Antora / UI attribution line):
+
+[source,handlebars]
+----
+{{> footer-build-stack}}
+----
+
+Valentus and DevCentr hubs style the block with existing `.footer-related` rules.
+
+== Published keys
+
+[cols="1,2"]
+|===
+| Handlebars (`site.keys.*`) | Set when
+
+| `buildStackAntoraHtml`
+| One or more `antora.extensions` entries after filtering
+
+| `buildStackAsciidocHtml`
+| One or more `asciidoc.extensions` entries after filtering
+
+| `uiBundleName`, `uiBundleUrl`
+| `ui.bundle.url` matches a known bundle slug and keys were not set manually
+|===
+
+== Related
+
+* https://github.com/antora-supplemental/antora-facto[antora-facto] — compose pack that registers build-stack
+* https://github.com/antora-supplemental/valentus-theme[valentus-theme] — footer template with optional `uiBundleName`

@@ -1,0 +1,8 @@
+= Changelog
+
+== 0.1.0 (2026-09-01)
+
+* Initial release: publish `antora.extensions` and `asciidoc.extensions` to `site.keys` as linked footer HTML.
+* Infer `ui_bundle_name` / `ui_bundle_url` from `ui.bundle.url` when not set manually.
+* Exclude self and relative `./` playbook requires from the published stack by default.
+* Ship companion `ui/partials/footer-build-stack.hbs` for Valentus / hub supplemental UI.
