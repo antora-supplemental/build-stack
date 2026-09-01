@@ -1,6 +1,6 @@
 {
   "name": "@antora-supplemental/build-stack",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Antora extension: publish playbook extension stacks and UI bundle attribution to site.keys for footer templates",
   "main": "lib/index.js",
   "exports": {

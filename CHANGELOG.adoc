@@ -1,5 +1,9 @@
 = Changelog
 
+== 0.1.2 (2026-09-01)
+
+* Expand default `package_home` map for common hub extensions (unversioned URLs, search-chat, incremental, asciidoctor-emoji).
+
 == 0.1.1 (2026-09-01)
 
 * Docs + companion partial: use snake_case `site.keys` names (`build_stack_antora_html`, etc.) — Antora does not camelCase playbook keys for Handlebars.
