@@ -1,5 +1,8 @@
-= Changelog
+﻿= Changelog
 
+== 2026-09-25 -- Cite facto-stack
+
+* Related link: `antora-facto` renamed to https://github.com/antora-supplemental/facto-stack[facto-stack].
 == 0.1.2 (2026-09-01)
 
 * Expand default `package_home` map for common hub extensions (unversioned URLs, search-chat, incremental, asciidoctor-emoji).

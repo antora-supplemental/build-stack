@@ -1,4 +1,4 @@
-= build-stack
+﻿= build-stack
 :description: Antora extension that publishes playbook extension stacks to site.keys for footer attribution.
 :page-audience: Antora hub maintainers shipping Valentus or custom supplemental UI
 :page-usage-context: Register under antora.extensions; copy companion footer partial into supplemental-ui
@@ -98,5 +98,5 @@ Valentus and DevCentr hubs style the block with existing `.footer-related` rules
 
 == Related
 
-* https://github.com/antora-supplemental/antora-facto[antora-facto] — compose pack that registers build-stack
+* https://github.com/antora-supplemental/facto-stack[facto-stack] — compose pack that registers build-stack
 * https://github.com/antora-supplemental/valentus-theme[valentus-theme] — footer template with optional `uiBundleName`
