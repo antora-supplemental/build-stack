@@ -61,4 +61,25 @@ describe('publishBuildStack', () => {
     assert.match(playbook.site.keys.build_stack_antora_html, /custom-ext/)
     assert.equal(playbook.site.keys.ui_bundle_name, 'custom-theme')
   })
+
+  it('lists direct playbook requires and ignores names that are only dependencies', () => {
+    const playbook = {
+      site: { keys: {} },
+      antora: {
+        extensions: [
+          '@antora/lunr-extension',
+          { require: '@antora-supplemental/page-context/antora' },
+        ],
+      },
+      asciidoc: { extensions: ['@antora-supplemental/page-context'] },
+    }
+
+    publishBuildStack(playbook)
+
+    const html = playbook.site.keys.build_stack_antora_html + playbook.site.keys.build_stack_asciidoc_html
+    assert.match(html, /lunr-extension/)
+    assert.match(html, /page-context\/antora/)
+    assert.match(html, />page-context</)
+    assert.doesNotMatch(html, /cheerio|handlebars|js-yaml/)
+  })
 })

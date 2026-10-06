@@ -1,5 +1,9 @@
 ﻿= Changelog
 
+== 2026-10-06 -- Footer lists direct playbook imports
+
+* The Extensions footer stays limited to `antora.extensions` and `asciidoc.extensions` as written in the playbook. Package dependency trees of those extensions are not listed.
+
 == 2026-09-25 -- Cite facto-stack
 
 * Related link: `antora-facto` renamed to https://github.com/antora-supplemental/facto-stack[facto-stack].
